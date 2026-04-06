@@ -6,6 +6,42 @@ const TELEGRAM_BOT_TOKEN = '8517192667:AAF9WFmq2V90gknoiyLVbxcrXBHk_-0QXVk'; // 
 const TELEGRAM_CHAT_ID = '976579012';     // Your Telegram user ID or group ID
 
 // ========================================
+// MOBILE MENU HANDLER
+// ========================================
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+
+    // Toggle menu on hamburger click
+    if (hamburger) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+
+    // Close menu when a link is clicked
+    if (navMenu) {
+        const navLinks = navMenu.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+        const isClickInsideHeader = event.target.closest('header');
+        if (!isClickInsideHeader && navMenu.classList.contains('active')) {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+        }
+    });
+});
+
+// ========================================
 // FORM SUBMISSION HANDLER
 // ========================================
 function handleSubmit(event) {
